@@ -1,0 +1,4 @@
+NC_002978	Wolbachia endosymbiont of Drosophila melanogaster
+NC_006833	Wolbachia endosymbiont strain TRS of Brugia malayi
+NC_010981	Wolbachia endosymbiont of Culex quinquefasciatus Pel
+NC_012416	Wolbachia sp. wRi

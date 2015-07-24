@@ -1,0 +1,129 @@
+Genbank Accession	Organism Name
+NC_012026	Anaplasma marginale str. Florida
+NC_004842	Anaplasma marginale str. St. Maries
+NC_007797	Anaplasma phagocytophilum HZ
+NC_008783	Bartonella bacilliformis KC583
+NC_016795	Brucella abortus A13334
+NC_006932	Brucella abortus bv. 1 str. 9-941
+NC_010742	Brucella abortus S19
+NC_010103	Brucella canis ATCC 23365
+NC_016778	Brucella canis HSK A52141
+NC_012441	Brucella melitensis ATCC 23457
+NC_007618	Brucella melitensis biovar Abortus 2308
+NC_003317	Brucella melitensis bv. 1 str. 16M
+NC_004310	Brucella suis 1330
+NC_010169	Brucella suis ATCC 23445
+NC_016797	Brucella suis VBI22
+NC_005061	Candidatus Blochmannia floridanus
+NC_002620	Chlamydia muridarum Nigg
+NC_010287	Chlamydia trachomatis 434/Bu
+NC_007429	Chlamydia trachomatis A/HAR-13
+NC_016798	Chlamydia trachomatis A2497
+NC_012686	Chlamydia trachomatis B/Jali20/OT
+NC_012687	Chlamydia trachomatis B/TZ1A828/OT
+NC_000117	Chlamydia trachomatis D/UW-3/CX
+NC_010280	Chlamydia trachomatis L2b/UCH-1/proctitis
+NC_015744	Chlamydia trachomatis L2c
+NC_004552	Chlamydophila abortus S26/3
+NC_003361	Chlamydophila caviae GPIC
+NC_015408	Chlamydophila pecorum E58
+NC_002179	Chlamydophila pneumoniae AR39
+NC_002179	Chlamydophila pneumoniae AR39
+NC_000922	Chlamydophila pneumoniae CWL029
+NC_000922	Chlamydophila pneumoniae CWL029
+NC_002491	Chlamydophila pneumoniae J138
+NC_002491	Chlamydophila pneumoniae J138
+NC_005043	Chlamydophila pneumoniae TW-183
+NC_005043	Chlamydophila pneumoniae TW-183
+NC_015470	Chlamydophila psittaci 6BC
+NC_011527	Coxiella burnetii CbuG_Q212
+NC_011528	Coxiella burnetii CbuK_Q154
+NC_009727	Coxiella burnetii Dugway 5J108-111
+NC_010117	Coxiella burnetii RSA 331
+NC_002971	Coxiella burnetii RSA 493
+NC_007799	Ehrlichia chaffeensis str. Arkansas
+NC_013766	Listeria monocytogenes 08-5578
+NC_013768	Listeria monocytogenes 08-5923
+NC_003210	Listeria monocytogenes EGD-e
+NC_011660	Listeria monocytogenes HCC23
+NC_012488	Listeria monocytogenes serotype 4b str. CLIP 80459
+NC_002973	Listeria monocytogenes serotype 4b str. F2365
+NC_011896	Mycobacterium leprae Br4923
+NC_002677	Mycobacterium leprae TN
+NC_002755	Mycobacterium tuberculosis CDC1551
+NC_009565	Mycobacterium tuberculosis F11
+NC_009525	Mycobacterium tuberculosis H37Ra
+NC_000962	Mycobacterium tuberculosis H37Rv
+NC_012943	Mycobacterium tuberculosis KZN 1435
+NC_016768	Mycobacterium tuberculosis KZN 4207
+NC_017026	Mycobacterium tuberculosis RGTB327
+NC_004432	Mycoplasma penetrans HF-2
+NC_012633	Rickettsia africae ESF-5
+NC_009881	Rickettsia akari str. Hartford
+NC_017058	Rickettsia australis str. Cutlack
+NC_009883	Rickettsia bellii OSU 85-389
+NC_007940	Rickettsia bellii RML369-C
+NC_016929	Rickettsia canadensis str. CA410
+NC_009879	Rickettsia canadensis str. McKiel
+NC_003103	Rickettsia conorii str. Malish 7
+NC_007109	Rickettsia felis URRWXCal2
+NC_015866	Rickettsia heilongjiangensis 054
+NC_016050	Rickettsia japonica YH
+NC_009900	Rickettsia massiliae MTU5
+NC_016931	Rickettsia massiliae str. AZT80
+NC_017043	Rickettsia montanensis str. OSU 85-930
+NC_017044	Rickettsia parkeri str. Portsmouth
+NC_012730	Rickettsia peacockii str. Rustic
+NC_016930	Rickettsia philipii str. 364D
+NC_017056	Rickettsia prowazekii str. BuV67-CWPP
+NC_017049	Rickettsia prowazekii str. Chernikova
+NC_017051	Rickettsia prowazekii str. Dachau
+NC_017048	Rickettsia prowazekii str. GvV257
+NC_017050	Rickettsia prowazekii str. Katsinyian
+NC_000963	Rickettsia prowazekii str. Madrid E
+NC_017057	Rickettsia prowazekii str. RpGvF24
+NC_017042	Rickettsia rhipicephali str. 3-7-female6-CWPP
+NC_009882	Rickettsia rickettsii str. 'Sheila Smith'
+NC_009882	Rickettsia rickettsii str. 'Sheila Smith'
+NC_016909	Rickettsia rickettsii str. Arizona
+NC_016909	Rickettsia rickettsii str. Arizona
+NC_016913	Rickettsia rickettsii str. Brazil
+NC_016913	Rickettsia rickettsii str. Brazil
+NC_016908	Rickettsia rickettsii str. Colombia
+NC_016908	Rickettsia rickettsii str. Colombia
+NC_016911	Rickettsia rickettsii str. Hauke
+NC_016911	Rickettsia rickettsii str. Hauke
+NC_016914	Rickettsia rickettsii str. Hino
+NC_016914	Rickettsia rickettsii str. Hino
+NC_016915	Rickettsia rickettsii str. Hlp_2
+NC_016915	Rickettsia rickettsii str. Hlp_2
+NC_010263	Rickettsia rickettsii str. Iowa
+NC_010263	Rickettsia rickettsii str. Iowa
+NC_016639	Rickettsia slovaca 13-B
+NC_006142	Rickettsia typhi str. Wilmington
+NC_002978	Wolbachia endosymbiont of Drosophila melanogaster
+NC_006833	Wolbachia endosymbiont strain TRS of Brugia malayi
+NC_010981	Wolbachia endosymbiont of Culex quinquefasciatus Pel
+NC_012416	Wolbachia sp. wRi
+NC_015736	Candidatus Tremblaya princeps PCIT
+NC_008512	Candidatus Carsonella ruddii PV
+NC_008513	Buchnera aphidicola BCc
+NC_015662	Buchnera aphidicola (Cinara tujafilina)
+NC_004344	Wigglesworthia glossinidia endosymbiont of Glossina brevipalpis
+NC_014109	Candidatus Riesia pediculicola USDA
+NC_000908	Mycoplasma genitalium G37
+NC_016621	Blattabacterium sp. (Cryptocercus punctulatus) str. Cpu
+NC_013454	Blattabacterium sp. (Blattella germanica) str. Bge
+NC_013418	Blattabacterium sp. (Periplaneta americana) str. BPLAN
+NC_015735	Candidatus Moranella endobia PCIT
+NC_004545	Buchnera aphidicola str. Bp (Baizongia pistaciae)
+NC_011047	Candidatus Phytoplasma mali
+NC_002528	Buchnera aphidicola str. APS (Acyrthosiphon pisum)
+NC_004061	Buchnera aphidicola str. Sg (Schizaphis graminum)
+NC_011834	Buchnera aphidicola str. Tuc7 (Acyrthosiphon pisum)
+NC_011833	Buchnera aphidicola str. 5A (Acyrthosiphon pisum)
+NC_013511	Mycoplasma hominis
+NC_007984	Baumannia cicadellinicola str. Hc (Homalodisca coagulata)
+NC_007716	Aster yellows witches'-broom phytoplasma AYWB
+NC_016893	Wigglesworthia glossinidia endosymbiont of Glossina morsitans morsitans (Yale colony)
+NC_014909	Candidatus Blochmannia vafer str. BVAF
