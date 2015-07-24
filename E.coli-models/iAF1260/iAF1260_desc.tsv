@@ -1,0 +1,2 @@
+"name"	"id"	"description"	"compartment"	"abbreviation"	"Nmetabolites"	"Nreactions"	"Ngenes"	"Nnnz"
+"E. coli iAF1260"	"MODELID_3307911"	"iAF1260"	"C_e, C_c, C_p"	"[e], [c], [p]"	1668	2382	1261	9231

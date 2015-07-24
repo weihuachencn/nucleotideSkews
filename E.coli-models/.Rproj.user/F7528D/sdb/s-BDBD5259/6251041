@@ -1,0 +1,17 @@
+{
+    "contents" : "## -- for testing purpose only --\n\nlibrary(sybil)\nlibrary(sybilSBML);\nlibrary(glpkAPI)\n\n## load an xml model --\nm <- readSBMLmod(filename=\"~/05_skews_bacteria/7_math_models/Bacillus_subtilis.xml\");\n# remove the requirement to produce maintenance ATP:\nm <- changeBounds(m, \"ATPM\", lb=0)\n\n# set glucose uptake limit to 1.0:\nex <- findExchReact(m)\nm <- changeBounds(m, ex[\"EX_glc(e)\"], lb = -1);\n\nm2 <- addReact(m, \"burnATP\", c(\"atp[c]\", \"h2o[c]\", \"adp[c]\", \"pi[c]\", \"h[c]\"), c(-1, -1, 1, 1, 1))   # same as ATPM\nm2 <- changeObjFunc(m2, react = \"burnATP\")  \natp.per.glc <- lp_obj( optimizeProb(m2) )  # 23.500\natp.per.glc\n\nupt <- uptReact(ex)\nex[upt]\n\nmg <- changeBounds(m, ex[\"EX_glc(e)\"], lb = -1000)    # allow unlimited uptake of glucose\nmg <- changeObjFunc(mg, react = \"EX_glc(e)\", obj_coef = 1)   # but minimize this uptake (given what needs to be produced)\nglc.per.mol.RNA <- c()  # use this to store the results\n\n# how much of glucose is needed per Guanine (gua) de novo synthesis etc.?\n# add missing (hypothetical) transport reactions:\nm.nt <- addReact(mg, \"ade_tr\", c(\"ade[c]\", \"ade[e]\"), c(-1, 1))   # transport reaction to extracellular\nm.nt <- addReact(mg, \"gua_tr\", c(\"gua[c]\", \"gua[e]\"), c(-1, 1))   # transport reaction to extracellular\nm.nt <- addReact(mg, \"ura_tr\", c(\"ura[c]\", \"ura[e]\"), c(-1, 1))   # transport reaction to extracellular\nm.nt <- addReact(mg, \"csn_tr\", c(\"csn[c]\", \"csn[e]\"), c(-1, 1))   # transport reaction to extracellular\n\nm.nt.o <- changeBounds(m.nt, \"EX_ade(e)\", lb=1) # require at least 1 mol of this nucleotide to be produced\nglc.per.mol.RNA[\"A\"] <- -lp_obj(optimizeProb(m.nt.o))\nm.nt.o <- changeBounds(m.nt, \"EX_csn(e)\", lb=1) # require at least 1 mol of this nucleotide to be produced\nglc.per.mol.RNA[\"C\"] <- -lp_obj(optimizeProb(m.nt.o))\nm.nt.o <- changeBounds(m.nt, \"EX_gua(e)\", lb=1) # require at least 1 mol of this nucleotide to be produced\nglc.per.mol.RNA[\"G\"] <- -lp_obj(optimizeProb(m.nt.o))\nm.nt.o <- changeBounds(m.nt, \"EX_ura(e)\", lb=1) # require at least 1 mol of this nucleotide to be produced\nglc.per.mol.RNA[\"U\"] <- -lp_obj(optimizeProb(m.nt.o))\n\natp.per.RNA <- glc.per.mol.RNA * atp.per.glc\natp.per.RNA\n\n\n\nm2 <- readTSVmod(prefix=\"iJO1366\", quoteChar = \"\\\"\")\nm2 <- changeBounds(m2, \"ATPM\", lb=0);\n",
+    "created" : 1401964998816.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "60099463",
+    "id" : "6251041",
+    "lastKnownWriteTime" : 1402401722,
+    "path" : "~/Dropbox/Rscripts/Rprojects/E.coli-models/Chen01.R",
+    "project_path" : "Chen01.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
