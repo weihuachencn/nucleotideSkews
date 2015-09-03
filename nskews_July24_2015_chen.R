@@ -13,6 +13,8 @@
 ##    --> changed formulae to reflect small N limit (following Bulmer)
 ## -- Last modified : March 20, 2015 -- MJL; current version of the model is 8.2 and the funciton script is 'MJL06_funcs.r'
 ## -- last modified : july 24, 2015;
+## -- last modified : Sep 3, 2015;
+##   added fig.s10, fig.s11; renamed s.11 to s13; removed original s.9
 
 ## --
 # save.image(file = "working.RData");
@@ -216,11 +218,11 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
                                  labels = c( expression(paste("mutational bias ", italic(mu^{io}), " for AT attributed to replication")),
                                              expression(paste("mutational bias ", italic(mu^{io}), " for GC attributed to replication")),
                                              ## -- transcription --
-                                             expression(paste("selection coefficient ", italic(Zeta[RNA]), " for AT attributed to transcription")),
-                                             expression(paste("selection coefficient ", italic(Zeta[RNA]), " for GC attributed to transcription")),
+                                             expression(paste("selection coefficient ", italic(S[RNA]), " for AT attributed to transcription")),
+                                             expression(paste("selection coefficient ", italic(S[RNA]), " for GC attributed to transcription")),
                                              ## -- translation --
-                                             expression(paste("selection coefficient ", italic(Zeta[AA]), " for AT attributed to translation")),
-                                             expression(paste("selection coefficient ", italic(Zeta[AA]), " for GC attributed to translation")) )
+                                             expression(paste("selection coefficient ", italic(S[AA]), " for AT attributed to translation")),
+                                             expression(paste("selection coefficient ", italic(S[AA]), " for GC attributed to translation")) )
             ) +
             theme(legend.justification=c(1,1), legend.position=c(1,1), legend.background = element_rect(colour = NA, fill = NA), legend.text = element_text( size = 5 )  ) +
             xlim( c( -1, 2.5 ) ) +
@@ -274,8 +276,8 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
             ggplot( data.frame( x = z.4s.M6[["AT.le"]], y = z.4s.M6[["AT.la"]], gc = dat$genomicGC ), aes( x,y ) ) +
             geom_point( aes(colour = gc ), size = 0.8 ) +
             scale_colour_gradientn( colours = jet.colors(7), name = "genomic GC%" ) +
-            xlab( expression(paste(italic(Zeta[RNA])," for AT, leading strand")) )  +
-            ylab( expression(paste(italic(Zeta[RNA])," for AT, lagging strand"))  ) +
+            xlab( expression(paste(italic(S[RNA])," for AT, leading strand")) )  +
+            ylab( expression(paste(italic(S[RNA])," for AT, lagging strand"))  ) +
             ggtitle( t ) +
             geom_abline( slope = 1, linetype = 2, colour = "darkgray", size = 0.5 );
 
@@ -284,8 +286,8 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
             ggplot( data.frame( x = z.4s.M6[["GC.le"]], y = z.4s.M6[["GC.la"]], gc = dat$genomicGC ), aes( x, y ) ) +
             geom_point( aes(colour = gc ), size = 0.8 ) +
             scale_colour_gradientn( colours = jet.colors(7), name = "genomic GC%" ) +
-            xlab( expression(paste(italic(Zeta[RNA])," for GC, leading strand")) )  +
-            ylab( expression(paste(italic(Zeta[RNA])," for GC, lagging strand"))  ) +
+            xlab( expression(paste(italic(S[RNA])," for GC, leading strand")) )  +
+            ylab( expression(paste(italic(S[RNA])," for GC, lagging strand"))  ) +
             ggtitle( t ) +
             geom_abline( slope = 1, linetype = 2, colour = "darkgray", size = 0.5 );
 
@@ -295,8 +297,8 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
             ggplot( data.frame( x = zAA.1s.M6[["AT.le"]], y = zAA.1s.M6[["AT.la"]], gc = dat$genomicGC ), aes( x,y ) ) +
             geom_point( aes(colour = gc ), size = 0.8 ) +
             scale_colour_gradientn( colours = jet.colors(7), name = "genomic GC%" ) +
-            xlab( expression(paste(italic(Zeta[AA])," for AT, leading strand")) )  +
-            ylab( expression(paste(italic(Zeta[AA])," for AT, lagging strand"))  ) +
+            xlab( expression(paste(italic(S[AA])," for AT, leading strand")) )  +
+            ylab( expression(paste(italic(S[AA])," for AT, lagging strand"))  ) +
             ggtitle( t ) +
             geom_abline( slope = 1, linetype = 2, colour = "darkgray", size = 0.5 );
 
@@ -305,8 +307,8 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
             ggplot( data.frame( x = zAA.1s.M6[["GC.le"]], y = zAA.1s.M6[["GC.la"]], gc = dat$genomicGC ), aes( x, y ) ) +
             geom_point( aes(colour = gc ), size = 0.8 ) +
             scale_colour_gradientn( colours = jet.colors(7), name = "genomic GC%" ) +
-            xlab( expression(paste(italic(Zeta[AA])," for GC, leading strand")) )  +
-            ylab( expression(paste(italic(Zeta[AA])," for GC, lagging strand"))  ) +
+            xlab( expression(paste(italic(S[AA])," for GC, leading strand")) )  +
+            ylab( expression(paste(italic(S[AA])," for GC, lagging strand"))  ) +
             ggtitle( t ) +
             geom_abline( slope = 1, linetype = 2, colour = "darkgray", size = 0.5 );
 
@@ -340,13 +342,13 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
         lty.gc <- 2;
         a <-
             ggplot( tmp5.combined, aes( factor(tai), trans.at ) ) + geom_boxplot( fill = color.transcription, linetype = 1 ,outlier.size = 1, width = boxplot.width) +
-            xlab( "tAI group" ) + ylab( expression( paste( italic(Zeta[RNA]) ) ) ) +
+            xlab( "tAI group" ) + ylab( expression( paste( italic(S[RNA]) ) ) ) +
             theme( axis.text = element_text(size = 10) , plot.title = element_text(size = rel(0.8), colour = "darkblue"))+
             ggtitle( paste("AT(", percentages[1], ")", sep = "") ) + ylim( range( c( tmp5.combined$trans.at, tmp5.combined$trans.gc ) ) ) +
             scale_x_discrete(breaks=c(1:quantiles), labels=labels);
 
         b <- ggplot( tmp5.combined, aes( factor(tai), trans.gc ) ) + geom_boxplot( fill = color.transcription, linetype = lty.gc ,outlier.size = 1, width = boxplot.width) +
-            xlab( "tAI group" ) + ylab( expression( paste( italic(Zeta[RNA]) ) ) ) +
+            xlab( "tAI group" ) + ylab( expression( paste( italic(S[RNA]) ) ) ) +
             theme( axis.text = element_text(size = 10) , plot.title = element_text(size = rel(0.8), colour = "darkblue"))+
             ggtitle( paste("GC(", percentages[2], ")", sep = "") ) + ylim( range( c( tmp5.combined$trans.at, tmp5.combined$trans.gc ) ) ) +
             scale_x_discrete(breaks=c(1:quantiles), labels=labels);
@@ -355,13 +357,13 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
         data.aa1 <- rbind( tmp5.combined[ , c("tai", "acc", "zAA1.at", "zAA1.gc") ], data.frame( tai = 0, acc = "acc", zAA1.at = sim2$skewAT1, zAA1.gc = sim2$skewGC1 ) );
 
         e <- ggplot( data.aa1, aes( factor(tai), zAA1.at ) ) + geom_boxplot( fill = c( "white", rep(color.ns, 5)), linetype = 1 ,outlier.size = 1, width = boxplot.width) +
-            xlab( "tAI group" ) + ylab( expression( paste( italic(Zeta[AA]) ) ) ) +
+            xlab( "tAI group" ) + ylab( expression( paste( italic(S[AA]) ) ) ) +
             theme( axis.text = element_text(size = 10), plot.title = element_text(size = rel(0.8), colour = "darkblue") )+
             ggtitle( paste("AT(", percentages[5], ")", sep = "") )+ ylim( range( c( data.aa1$zAA1.at, data.aa1$zAA1.gc ) ) ) +
             scale_x_discrete(breaks=c(0:quantiles), labels=labels.with.Random);
 
         f <- ggplot( data.aa1, aes( factor(tai), zAA1.gc ) ) + geom_boxplot( fill = c( "white", rep(color.ns, 5)), linetype = lty.gc ,outlier.size = 1, width = boxplot.width) +
-            xlab( "tAI group" ) + ylab( expression( paste( italic(Zeta[AA]) ) ) ) +
+            xlab( "tAI group" ) + ylab( expression( paste( italic(S[AA]) ) ) ) +
             theme( axis.text = element_text(size = 10), plot.title = element_text(size = rel(0.8), colour = "darkblue") )+
             ggtitle( paste("GC(", percentages[6], ")", sep = "") )+ ylim( range( c( data.aa1$zAA1.at, data.aa1$zAA1.gc ) ) ) +
             scale_x_discrete(breaks=c(0:quantiles), labels=labels.with.Random);
@@ -416,7 +418,8 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
 
     ## -- sup figures --
     ## -- last modified : july 24, 2015 ...
-    ## -- fig.s10. two panles; both are similar to figure 4,
+    ## -- last modified : sep 3, 2015 ...
+    ## -- fig.s9. two panles; both are similar to figure 4,
     ##             but in one GC skews increase but AT skews remain unchanged,
     ##             in the other AT skews increase but GC skews remain unchanged
     {
@@ -442,22 +445,176 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
             xlab("overall GC skews") + ylab("mean cost per amino acid");
 
         ## -- save to output file --
-        pdf(file = "fig.sxx_tradeoffs_AT_or_GC_skews_only.pdf", height = 5, width = 12);
+        pdf(file = "fig.s9_tradeoffs_AT_or_GC_skews_only.pdf", height = 5, width = 12);
         multiplot(a,b, cols=2);
         dev.off();
     }
 
+    ## --------------------------------------
+    ## --- fig S10 / fig.s10 ...
+    ## -- last modified : Sep 3, 2015 ; new Figure S10: boxplot of raw skews as a function of tais --
+    {
+        library(reshape2);
+
+        pRaw.ns.at <-
+            ggplot( melt( as.data.frame(data.matrix(tai5[, c("quantile", "ATle1", "ATla1")])), id.vars = "quantile" ),
+                    aes( x = factor(quantile), y = value, fill = variable ) ) +
+            geom_boxplot( ) + xlab( "tAI group" ) + ylab( expression( paste( "raw skew (", italic(gamma), ")" ) ) ) +
+            scale_fill_discrete(name="Strand",
+                                breaks=c("ATle1", "ATla1"),
+                                labels=c("leading", "lagging")) +
+            ggtitle( "AT at ns site" )
+
+        pRaw.ns.gc <-
+            ggplot( melt( as.data.frame(data.matrix(tai5[, c("quantile", "GCle1", "GCla1")])), id.vars = "quantile" ),
+                    aes( x = factor(quantile), y = value, fill = variable ) ) +
+            geom_boxplot( ) + xlab( "tAI group" ) + ylab( expression( paste( "raw skew (", italic(gamma), ")" ) ) ) +
+            scale_fill_discrete(name="Strand",
+                                breaks=c("GCle1", "GCla1"),
+                                labels=c("leading", "lagging")) +
+            ggtitle( "GC at ns site" )
+
+        pRaw.4s.at <-
+            ggplot( melt( as.data.frame(data.matrix(tai5[, c("quantile", "ATle4", "ATla4")])), id.vars = "quantile" ),
+                    aes( x = factor(quantile), y = value, fill = variable ) ) +
+            geom_boxplot( ) + xlab( "tAI group" ) + ylab( expression( paste( "raw skew (", italic(gamma), ")" ) ) ) +
+            scale_fill_discrete(name="Strand",
+                                breaks=c("ATle4", "ATla4"),
+                                labels=c("leading", "lagging")) +
+            ggtitle( "AT at 4s site" )
+
+        pRaw.4s.gc <-
+            ggplot( melt( as.data.frame(data.matrix(tai5[, c("quantile", "GCle4", "GCla4")])), id.vars = "quantile" ),
+                    aes( x = factor(quantile), y = value, fill = variable ) ) +
+            geom_boxplot( ) + xlab( "tAI group" ) + ylab( expression( paste( "raw skew (", italic(gamma), ")" ) ) ) +
+            scale_fill_discrete(name="Strand",
+                                breaks=c("GCle4", "GCla4"),
+                                labels=c("leading", "lagging")) +
+            ggtitle( "GC at 4s site" )
+
+
+        pdf(file = "fig.s10_rawSkews_ns_4s_stratified_by_tai.pdf", height = 10, width = 8);
+        multiplot(pRaw.ns.at, pRaw.4s.at, pRaw.ns.gc, pRaw.4s.gc,  cols= 2);
+        dev.off();
+
+    }
+
+    ## --------------------------------------
+    ## -- last modified : Sep 3, 2015;
+    ## -- fig.s11 (new since sep 3, 2015) : S_rc_and_nrc_flanking_nucleotides.ver.sep2015 --
+    {
+        ## - load data --
+        datRCNRC <- read.delim(file = "data_and_other_R_scripts/skews_4s_io_for_rc_and_nonrc_flanking_nucs_july_27_2015.txt", header = T, as.is = T, sep = "\t")
+        ## -- NOTE: here RC == triplets with reverse-complementary flanking nucleotides --
+        ##  NRC == triplets with non-reverse-complemnetary flanking nucleotides--
+
+        atY <- datRCNRC[ datRCNRC$cat == "AT" & datRCNRC$rcfl == "Y", ];
+        sRC.at <- log( ( (1 + atY$le4s) / (1 - atY$le4s) ) * ( (1 + atY$la4s) / (1-atY$la4s) ) )/2;
+
+        atN <- datRCNRC[ datRCNRC$cat == "AT" & datRCNRC$rcfl == "N", ];
+        sNRC.at <- log( ( (1 + atN$le4s) / (1 - atN$le4s) ) * ( (1 + atN$la4s) / (1-atN$la4s) ) )/2;
+
+        atA <- datRCNRC[ datRCNRC$cat == "AT" & datRCNRC$rcfl == "A", ];
+        sA.at <- log( ( (1 + atA$le4s) / (1 - atA$le4s) ) * ( (1 + atA$la4s) / (1-atA$la4s) ) )/2;
+
+        ## -- cor --
+        cor.test(sA.at, sRC.at);
+        cor.test(sA.at, sNRC.at);
+        cor.test(sRC.at, sNRC.at);
+
+
+        ## =========================================
+        ## -- GC --
+        gcY <- datRCNRC[ datRCNRC$cat == "GC" & datRCNRC$rcfl == "Y", ];
+        sRC.gc <- log( ( (1 + gcY$le4s) / (1 - gcY$le4s) ) * ( (1 + gcY$la4s) / (1-gcY$la4s) ) )/2;
+
+        gcN <- datRCNRC[ datRCNRC$cat == "GC" & datRCNRC$rcfl == "N", ];
+        sNRC.gc <- log( ( (1 + gcN$le4s) / (1 - gcN$le4s) ) * ( (1 + gcN$la4s) / (1-gcN$la4s) ) )/2;
+
+        gcA <- datRCNRC[ datRCNRC$cat == "GC" & datRCNRC$rcfl == "A", ];
+        sA.gc <- log( ( (1 + gcA$le4s) / (1 - gcA$le4s) ) * ( (1 + gcA$la4s) / (1-gcA$la4s) ) )/2;
+
+        ## -- cor --
+        cor.test(sA.gc, sRC.gc);
+        cor.test(sA.gc, sNRC.gc);
+        cor.test(sRC.gc, sNRC.gc);
+
+
+        ## -- plot a figure as supplementary figure ... --
+        df.gc <- rbind(
+            data.frame( cat = "All", datRCNRC = sA.gc ),
+            data.frame( cat = "rc", datRCNRC = sRC.gc),
+            data.frame( cat = "nrc", datRCNRC = sNRC.gc)
+        );
+
+        df.at <- rbind(
+            data.frame( cat = "All", datRCNRC = sA.at ),
+            data.frame( cat = "rc", datRCNRC = sRC.at),
+            data.frame( cat = "nrc", datRCNRC = sNRC.at)
+        );
+
+        p.dens.gc <-
+            ggplot(df.gc, aes( x=datRCNRC, group = cat )) + geom_density( aes(colour = factor(cat), linetype = cat )  ) +
+            scale_colour_manual( values = c( "black", "green", "red" ) ) +
+            geom_vline( xintercept = 0, linetype = 1, size = 0.5 ) +
+            xlab( expression(paste(italic(S[RNA])," for GC")) )  +
+            theme(legend.position="none");
+
+        p.dens.at <-
+            ggplot(df.at, aes( x=datRCNRC, group = cat )) + geom_density( aes(colour = factor(cat), linetype = cat )  ) +
+            scale_colour_manual( values = c( "black", "green", "red" ) ) +
+            geom_vline( xintercept = 0, linetype = 1,  size = 0.5 )+
+            xlab( expression(paste(italic(S[RNA])," for AT")) )  +
+            theme(legend.position="none");
+
+        p.points.gc <-
+            ggplot( data.frame( x = sA.gc, y = sRC.gc ), aes(x,y) ) + geom_point() +
+            geom_abline(slope = 1, linetype = 2, colour = "darkgray", size = 0.5) +
+            ggtitle( bquote(.(parse(text=paste( "italic(R)== ", round( cor.test( sA.gc, sRC.gc )$estimate , digits=3), sep = "" ))) ) ) +
+            xlab( expression(paste(italic(S[RNA])," for GC, all")) )  +
+            ylab( expression(paste(italic(S[RNA])," for GC, sites with reverse-complementary flanking nucleotides"))  )
+
+
+        p.points.at <-
+            ggplot( data.frame( x = sA.at, y = sRC.at ), aes(x,y) ) + geom_point() +
+            geom_abline(slope = 1, linetype = 2, colour = "darkgray", size = 0.5) +
+            ggtitle( bquote(.(parse(text=paste( "italic(R)== ", round( cor.test( sA.at, sRC.at )$estimate , digits=3), sep = "" ))) ) ) +
+            xlab( expression(paste(italic(S[RNA])," for AT, all")) )  +
+            ylab( expression(paste(italic(S[RNA])," for AT, sites with reverse-complementary flanking nucleotides"))  )
+
+#         p.points2.gc <-
+#             ggplot( data.frame( x = sA.gc, y = sNRC.gc ), aes(x,y) ) + geom_point() +
+#             geom_abline(slope = 1, linetype = 2, colour = "darkgray", size = 0.5) +
+#             ggtitle( bquote(.(parse(text=paste( "italic(R)== ", round( cor.test( sA.gc, sNRC.gc )$estimate , digits=3), sep = "" ))) ) ) +
+#             xlab( expression(paste(italic(S[RNA])," for GC, all")) )  +
+#             ylab( expression(paste(italic(S[RNA])," for GC, sites with other flanking nucleotides"))  )
+#
+#
+#         p.points2.at <-
+#             ggplot( data.frame( x = sA.at, y = sNRC.at ), aes(x,y) ) + geom_point() +
+#             geom_abline(slope = 1, linetype = 2, colour = "darkgray", size = 0.5) +
+#             ggtitle( bquote(.(parse(text=paste( "italic(R)== ", round( cor.test( sA.at, sNRC.at )$estimate , digits=3), sep = "" ))) ) ) +
+#             xlab( expression(paste(italic(S[RNA])," for AT, all")) )  +
+#             ylab( expression(paste(italic(S[RNA])," for AT, sites with other flanking nucleotides"))  )
+
+        pdf(file = "fig.s11_rc_and_nrc_flanking_nucleotides_sep2015.pdf", height = 10, width = 10.2);
+        multiplot(p.dens.at, p.points.at, p.dens.gc, p.points.gc, cols= 2);
+        dev.off();
+    }
+
     ## -- last modified : july 24, 2015 ...
-    ## -- fig.s11; similar to fig.4, but use alternative source of aa cost i.e. aerobic heterotrophe  --
+    ## -- last modified : sep 3, 2015 ...
+    ## -- fig.s13; similar to fig.4, but use alternative source of aa cost i.e. aerobic heterotrophe  --
     {
         ## -- ## --
-        pdf(file = "fig.sxx_tradefoff_alternative_source_of_aaCosts.pdf", height = 5, width = 6);
+        pdf(file = "fig.s13_tradefoff_alternative_source_of_aaCosts.pdf", height = 5, width = 6);
         ggplot( data = tradeoff, aes( x = overallSkews, y = aaAvgCost_Aer_Het, group = GC, colour = GC ) ) +
             geom_line(  ) +
             scale_colour_gradientn( colours = jet.colors(7), name = "coding GC%" ) +
             xlab("overall AT / GC skews") + ylab("mean cost per amino acid");
         dev.off();
     }
+
 
     ## -- figs. s3~5
     ## -- see section: '## -- section: how to generate extended data figures 3~5' for the instructions for generating figures 3~5
@@ -485,61 +642,9 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
         geom_line(size=0.3) +
         scale_x_log10( breaks = c(0.01, 0.1,  1,  10) ) +
         scale_colour_gradientn( colours = jet.colors(7), name = expression(mu) ) +
-        xlab( expression( italic(S) ) );
+        xlab( expression( italic(S) ) ) + ylab( expression(paste( "Skew (",  gamma,")")) );
     dev.off();
 } ## -- end --
-
-## ============== Sup figure 9, comparing Srna obtained from Eq3&4 and Eq4 of the supplemntary ... =======
-## -- July 24, 2015 ...
-{
-    ## -- calculate raw skews --
-    skew.le.4s.at <- (dat$A4le - dat$T4le) / (dat$A4le + dat$T4le);
-    skew.la.4s.at <- (dat$A4la - dat$T4la) / (dat$A4la + dat$T4la);
-
-    skew.le.4s.gc <- (dat$G4le - dat$C4le) / (dat$G4le + dat$C4le);
-    skew.la.4s.gc <- (dat$G4la - dat$C4la) / (dat$G4la + dat$C4la);
-
-    ## -- sRNAs using eq4 of the supplementary ... --
-    sRNA.at <- log( ( (1 + skew.le.4s.at) / (1 - skew.le.4s.at) ) * ( (1 + skew.la.4s.at) / (1-skew.la.4s.at) ) )/2;
-    sRNA.gc <- log( ( (1 + skew.le.4s.gc) / (1 - skew.le.4s.gc) ) * ( (1 + skew.la.4s.gc) / (1-skew.la.4s.gc) ) )/2;
-
-    ## -- combine everything together ...
-    df.all.2 <- cbind(
-        dat[, c("genomicGC", "genomicLen")],
-        data.frame( dMuioAT = dMu.io.M6[["AT"]], dMuioGC = dMu.io.M6[["GC"]],
-                    dMu4sAT = dMu.4s.M6[["AT"]], dMu4sGC = dMu.4s.M6[["GC"]],
-                    zRNA.AT.le = z.4s.M6[["AT.le"]], zRNA.AT.la = z.4s.M6[["AT.la"]],
-                    zRNA.GC.le = z.4s.M6[["GC.le"]], zRNA.GC.la = z.4s.M6[["GC.la"]],
-                    zAA.AT.le = zAA.1s.M6[["AT.le"]], zAA.AT.la = zAA.1s.M6[["AT.la"]],
-                    zAA.GC.le = zAA.1s.M6[["GC.le"]], zAA.GC.la = zAA.1s.M6[["GC.la"]],
-                    zRNA.AT.eq4 = sRNA.at, zRNA.GC.eq4 = sRNA.gc)
-    );
-
-    ## -- plot --
-    pa <- plotPanelEq4Eq3( data.frame( x = df.all.2$zRNA.AT.eq4, y = df.all.2$zRNA.AT.le, gc = df.all.2$genomicGC ),
-                           xlab = expression(paste(italic(Zeta[RNA])," for AT, derived using EQ4")),
-                           ylab =  expression(paste(italic(Zeta[RNA])," for AT, derived using EQ3a, leading strand")) );
-
-
-    pb <- plotPanelEq4Eq3( data.frame( x = df.all.2$zRNA.AT.eq4, y =df.all.2$zRNA.AT.la , gc = df.all.2$genomicGC ),
-                           xlab = expression(paste(italic(Zeta[RNA])," for AT, derived using EQ4")),
-                           ylab =  expression(paste(italic(Zeta[RNA])," for AT, derived using EQ3a, lagging strand")) );
-
-
-    pc <- plotPanelEq4Eq3( data.frame( x = df.all.2$zRNA.GC.eq4, y = df.all.2$zRNA.GC.le, gc = df.all.2$genomicGC ),
-                           xlab = expression(paste(italic(Zeta[RNA])," for GC, derived using EQ4")),
-                           ylab =  expression(paste(italic(Zeta[RNA])," for GC, derived using EQ3a, leading strand")) );
-
-
-    pd <- plotPanelEq4Eq3( data.frame( x = df.all.2$zRNA.GC.eq4, y =df.all.2$zRNA.GC.la , gc = df.all.2$genomicGC ),
-                           xlab = expression(paste(italic(Zeta[RNA])," for GC, derived using EQ4")),
-                           ylab =  expression(paste(italic(Zeta[RNA])," for GC, derived using EQ3a, lagging strand")) );
-
-
-    pdf(file = "fig.s9_sRNA_eq34_and_eq4.pdf", height = 10, width = 12);
-    multiplot(pa, pc, pb, pd,  cols= 2);
-    dev.off();
-}
 
 
 #### ============= statistical tests ===============
@@ -1022,3 +1127,58 @@ source("data_and_other_R_scripts/multiplot.R"); ## multiplot for ggplot2 --
 
 
 }
+
+###########################################
+## -- NOTE: not used; Sep 3, 2015 --
+## ============== Sup figure 9, comparing Srna obtained from Eq3&4 and Eq4 of the supplemntary ... =======
+## -- July 24, 2015 ...
+{
+    ## -- calculate raw skews --
+    skew.le.4s.at <- (dat$A4le - dat$T4le) / (dat$A4le + dat$T4le);
+    skew.la.4s.at <- (dat$A4la - dat$T4la) / (dat$A4la + dat$T4la);
+
+    skew.le.4s.gc <- (dat$G4le - dat$C4le) / (dat$G4le + dat$C4le);
+    skew.la.4s.gc <- (dat$G4la - dat$C4la) / (dat$G4la + dat$C4la);
+
+    ## -- sRNAs using eq4 of the supplementary ... --
+    sRNA.at <- log( ( (1 + skew.le.4s.at) / (1 - skew.le.4s.at) ) * ( (1 + skew.la.4s.at) / (1-skew.la.4s.at) ) )/2;
+    sRNA.gc <- log( ( (1 + skew.le.4s.gc) / (1 - skew.le.4s.gc) ) * ( (1 + skew.la.4s.gc) / (1-skew.la.4s.gc) ) )/2;
+
+    ## -- combine everything together ...
+    df.all.2 <- cbind(
+        dat[, c("genomicGC", "genomicLen")],
+        data.frame( dMuioAT = dMu.io.M6[["AT"]], dMuioGC = dMu.io.M6[["GC"]],
+                    dMu4sAT = dMu.4s.M6[["AT"]], dMu4sGC = dMu.4s.M6[["GC"]],
+                    zRNA.AT.le = z.4s.M6[["AT.le"]], zRNA.AT.la = z.4s.M6[["AT.la"]],
+                    zRNA.GC.le = z.4s.M6[["GC.le"]], zRNA.GC.la = z.4s.M6[["GC.la"]],
+                    zAA.AT.le = zAA.1s.M6[["AT.le"]], zAA.AT.la = zAA.1s.M6[["AT.la"]],
+                    zAA.GC.le = zAA.1s.M6[["GC.le"]], zAA.GC.la = zAA.1s.M6[["GC.la"]],
+                    zRNA.AT.eq4 = sRNA.at, zRNA.GC.eq4 = sRNA.gc)
+    );
+
+    ## -- plot --
+    pa <- plotPanelEq4Eq3( data.frame( x = df.all.2$zRNA.AT.eq4, y = df.all.2$zRNA.AT.le, gc = df.all.2$genomicGC ),
+                           xlab = expression(paste(italic(S[RNA])," for AT, derived using EQ4")),
+                           ylab =  expression(paste(italic(S[RNA])," for AT, derived using EQ3a, leading strand")) );
+
+
+    pb <- plotPanelEq4Eq3( data.frame( x = df.all.2$zRNA.AT.eq4, y =df.all.2$zRNA.AT.la , gc = df.all.2$genomicGC ),
+                           xlab = expression(paste(italic(S[RNA])," for AT, derived using EQ4")),
+                           ylab =  expression(paste(italic(S[RNA])," for AT, derived using EQ3a, lagging strand")) );
+
+
+    pc <- plotPanelEq4Eq3( data.frame( x = df.all.2$zRNA.GC.eq4, y = df.all.2$zRNA.GC.le, gc = df.all.2$genomicGC ),
+                           xlab = expression(paste(italic(S[RNA])," for GC, derived using EQ4")),
+                           ylab =  expression(paste(italic(S[RNA])," for GC, derived using EQ3a, leading strand")) );
+
+
+    pd <- plotPanelEq4Eq3( data.frame( x = df.all.2$zRNA.GC.eq4, y =df.all.2$zRNA.GC.la , gc = df.all.2$genomicGC ),
+                           xlab = expression(paste(italic(S[RNA])," for GC, derived using EQ4")),
+                           ylab =  expression(paste(italic(S[RNA])," for GC, derived using EQ3a, lagging strand")) );
+
+
+    pdf(file = "fig.s9_sRNA_eq34_and_eq4.pdf", height = 10, width = 12);
+    multiplot(pa, pc, pb, pd,  cols= 2);
+    dev.off();
+}
+
